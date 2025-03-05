@@ -18,7 +18,7 @@ warning_lines = []  # Linjer i tekstfilen hvor ordet "WARNING" forekommer
 error_lines = []  # Linjer i tekstfilen hvor ordet "ERROR" forekommer
 
 with open(log_file, "r") as file:
-    for line_number, line in enumerate(file, 1):  # Starter line_number from 1 f
+    for line_number, line in enumerate(file, 1):  # Starter line_number fra 1 
         warning_matches = re.findall(r"WARNING", line)  # Finder "WARNING" på pågældende linje
         error_matches = re.findall(r"ERROR", line)  # ditto "ERROR" 
         
