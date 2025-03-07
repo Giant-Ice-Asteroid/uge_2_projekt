@@ -1,0 +1,7 @@
+os
+numpy
+collections
+matplotlib.pyplot
+wordcloud
+csv
+pandas

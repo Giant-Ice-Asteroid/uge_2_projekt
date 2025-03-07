@@ -8,32 +8,63 @@ Gem de filtrerede logmeddelelser i en ny fil, så kritiske hændelser er lette a
 """
 
 import os
-import re
 
-log_file = "opgave_2\\app_log.txt"
+# Funktion som læser en log fil, leder efter ERROR and WARNING advarsler og gemmer dem i en ny fil.
 
-warning_count = 0  # optælling  af "WARNING" forekomster
-error_count = 0  # optælling af "ERROR" forekomster
-warning_lines = []  # Linjer i tekstfilen hvor ordet "WARNING" forekommer
-error_lines = []  # Linjer i tekstfilen hvor ordet "ERROR" forekommer
+def analyse_log_file(log_file_path, output_file_path):
 
-with open(log_file, "r") as file:
-    for line_number, line in enumerate(file, 1):  # Starter line_number fra 1 
-        warning_matches = re.findall(r"WARNING", line)  # Finder "WARNING" på pågældende linje
-        error_matches = re.findall(r"ERROR", line)  # ditto "ERROR" 
+    warning_count = 0  # optælling  af "WARNING" forekomster
+    error_count = 0  # optælling af "ERROR" forekomster
+
+    filtered_lines = []  # Linjer i tekstfilen hvor ordet "WARNING" eller "ERROR" forekommer
+
+    # Sikrer at logfilen eksisterer:
+    if not os.path.exists(log_file_path):
+        print(f"Error: Log file '{log_file_path}' does not exist!! :'(")
+        return
+    
+    try:
+        # Dernæst læses logfilen og gennemgås linje for linje for advarsler
+        with open(log_file_path, "r") as file:
+            for line in file:                
+                if "WARNING" in line or "ERROR" in line:
+                    filtered_lines.append(line.strip())
+                    
+                    # optælling
+                    if "WARNING" in line:
+                        warning_count += 1
+                    if "ERROR" in line:
+                        error_count += 1
+
+        # Filtrerede advarsler skrives til output file
+        with open(output_file_path, "w") as output_file:
+            # overskrift og mellemrum for læsbarhed:
+            output_file.write("FILTERED LOG MESSAGES (WARNINGS AND ERRORS)\n")
+            output_file.write("="*50 + "\n\n")
+            
+            # hver linje i filtered_lines skrives til output filen
+            for line in filtered_lines:
+                output_file.write(line + "\n")
+            
+            # Mellemrum og opsummering af fund:
+            output_file.write("\n" + "="*50 + "\n")
+            output_file.write(f"SUMMARY: Found {warning_count} warnings and {error_count} errors.\n")
         
-        if warning_matches:  #hvis  "WARNING" optræder på linje
-            warning_count += len(warning_matches)  # inkrementerer count
-            warning_lines.append(line_number)  # tilføjer linje nummer til warning liste
-        
-        if error_matches:  
-            error_count += len(error_matches)  
-            error_lines.append(line_number)  
+        # Print summary to console
+        print(f"Log analysis now complete.")
+        print(f"Found a total of {warning_count} warnings and {error_count} errors.")
+        print(f"Filtered messages have been saved to '{output_file_path}'")
 
-# resultat
-print(f"Antal forekomster af 'WARNING': {warning_count}")
-print(f"Linjer hvor 'WARNING' forefindes: {warning_lines}")
-print(f"Antal forekomster af 'ERROR': {error_count}")
-print(f"Linjer hvor 'ERROR' forefindes: {error_lines}")
+     # advarsel såfremt der opstår andre fejl   
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+if __name__=="__main__":
+    # Filstier
+    log_file = os.path.join("data", "app_log.txt")
+    output_file = os.path.join("data", "filtered_log.txt")
+
+    # For at køre analysen...:
+    analyse_log_file(log_file, output_file)
 
 
