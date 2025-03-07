@@ -13,7 +13,7 @@ Projektmappen indeholder foruden README:
 
 Refleksioner og ønsker til feedback:
 
-Det har været sjovt og udfordrende at arbejde med opgaverne. Der var flere aspekter jeg havde sparsom eller ingen erfaring med, og som jeg derfor måtte bruge en del tid på (og som helt sikkert kunne være bedre/mere advanceret): Særligt GitHub(helt nyt), og de forskellige data/visualiseringsbibioteker (pandas, mathplotlib etc). Brugte også en del tid på at finde ud af hvordan filerne skulle tilgås/tilgå hinanden - håber det virker. Kunne godt tænke mig feedback på dette, og evt. hvor det er optimalt først at sætte ind ift. at opbygge flere kompetencer. 
+Det har været sjovt og udfordrende at arbejde med opgaverne. Der var flere aspekter jeg havde sparsom eller ingen erfaring med, og som jeg derfor måtte bruge en del tid på (og som helt sikkert kunne være bedre/mere advanceret): Særligt GitHub(helt nyt), exceptions og de forskellige data/visualiseringsbibioteker (pandas, mathplotlib etc). Brugte også en del tid på at finde ud af hvordan filerne skulle tilgås/tilgå hinanden (filstier) - håber det virker. Kunne godt tænke mig feedback på dette, og evt. hvor det er optimalt først at sætte ind ift. at opbygge flere kompetencer. 
 Derudover vil jeg gerne have feedback på hvordan min kode er organiseret, og hvad jeg burde gøre anderledes, samt feedback ift. generelle forbedringer eller fejl jeg har overset
 
 

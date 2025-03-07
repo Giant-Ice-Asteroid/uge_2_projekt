@@ -22,34 +22,29 @@ import pandas as pd # datanalyse
 import matplotlib.pyplot as plt  # visualisering af data
 import os # håndtering af filstier
 
-
 file_path = os.path.join("data", "DKHousingPricesSample100k.csv")
 df = pd.read_csv(file_path) 
 
 # Print de første 10 data ud:
-
 print("First 10 row of the dataset: ") 
 print(df.head(10))
 
 # Info om datasættet:
-
 print("\nDataset info: ")
 df.info()
 
 # Statistisk overblik:
-
 print("\nStatistical summary:")
 print(df.describe())
 
-# overblik over manglende værdier:
-
+# resume over manglende værdier:
 print("\nMissing values per individual column:")
 print(df.isnull().sum())
+
 
 # opgave 4.2
 
 # grouped efter regionen sammenholdt med gennemsnitlig salgspris, og sorteret (faldende)
-
 price_by_region = (df.groupby("region")["purchase_price"].mean().sort_values(ascending=False))
 
 print("\nAverage purchase price by each region:")
@@ -59,7 +54,6 @@ print(price_by_region)
 # opgave 4.3
 
 # grouped ejendomstype type og sammenholdt med gennemsnitlig salgspris(faldende)
-
 price_by_house_type = df.groupby("house_type")["purchase_price"].mean().sort_values(ascending=False)
 print("\nAverage purchase price by house type:")
 print(price_by_house_type)
@@ -68,20 +62,15 @@ print(price_by_house_type)
 
 price_by_region_and_house_type = df.groupby(["region", "house_type"])["purchase_price"].mean().unstack()
 
-
-# Visualisering - bar chart
-
+# Visualisering - søjlediagram/barplot
 price_by_region_and_house_type.plot(kind='bar', figsize=(12, 8))
-
 # tilføjer titler og labels og justerer 
 plt.title('Average Purchase Price by Region and House Type', fontsize=14)
 plt.xlabel('Region', fontsize=12)
 plt.ylabel('Average Purchase Price (DKK)', fontsize=12)
-
 plt.legend(title='House Type') # legend boks 
 plt.xticks(rotation=45, ha='right') # roterer skrift på x-aksen
 plt.grid(axis='y', linestyle='--', alpha=0.7)
-
 plt.tight_layout() # holder grafikken inden for boksen
 plt.show()
 
@@ -94,10 +83,8 @@ sqm_price_by_region = df.groupby("region")["sqm_price"].mean().sort_values(ascen
 print("\nPrice per Square meter by region:")
 print(sqm_price_by_region)
 
-# Visualisering
-
+# Visualisering med søjlediagram
 sqm_price_by_region.plot(kind='bar', figsize=(12, 8))
-
 plt.title('Average Price per Square Meter by Region', fontsize=16, pad=20)
 plt.xlabel('Region', fontsize=12)
 plt.ylabel('Average Price per sqm (DKK)', fontsize=12)

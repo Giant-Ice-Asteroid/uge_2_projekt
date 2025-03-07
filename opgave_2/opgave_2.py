@@ -9,9 +9,10 @@ Gem de filtrerede logmeddelelser i en ny fil, så kritiske hændelser er lette a
 
 import os
 
-# Funktion som læser en log fil, leder efter ERROR and WARNING advarsler og gemmer dem i en ny fil.
 
 def analyse_log_file(log_file_path, output_file_path):
+
+    """Funktion som læser en log fil, leder efter ERROR and WARNING advarsler og gemmer dem i en ny fil."""
 
     warning_count = 0  # optælling  af "WARNING" forekomster
     error_count = 0  # optælling af "ERROR" forekomster
@@ -50,7 +51,7 @@ def analyse_log_file(log_file_path, output_file_path):
             output_file.write("\n" + "="*50 + "\n")
             output_file.write(f"SUMMARY: Found {warning_count} warnings and {error_count} errors.\n")
         
-        # Print summary to console
+        # Printer resume af fund
         print(f"Log analysis now complete.")
         print(f"Found a total of {warning_count} warnings and {error_count} errors.")
         print(f"Filtered messages have been saved to '{output_file_path}'")
@@ -59,12 +60,16 @@ def analyse_log_file(log_file_path, output_file_path):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-if __name__=="__main__":
+def main():
+    
     # Filstier
     log_file = os.path.join("data", "app_log.txt")
     output_file = os.path.join("data", "filtered_log.txt")
 
     # For at køre analysen...:
     analyse_log_file(log_file, output_file)
+
+if __name__=="__main__":
+    main()
 
 

@@ -82,7 +82,7 @@ def letter_counter(names):
                     
                     letter_count[letter] = letter_count.get(letter,0) + 1
 
-    print(f"Occourence of individual letters: {letter_count}")
+    print(f"Occurrence of individual letters: {letter_count}")
     return letter_count
     
 def letter_frequency_bar_chart(letter_count):
@@ -159,7 +159,7 @@ def analyse_names(names):
 
     # visualisering
 
-    print("Generating histogram visualising name length distribution..")
+    print("Generating visualisations..")
     # variable som anvendes.. 
     lengths = sorted(freq_dict.keys())
     frequencies = [freq_dict[length] for length in lengths]
@@ -173,9 +173,6 @@ def analyse_names(names):
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.xticks(lengths)
     plt.tight_layout()
-    
-    #viser histogrammet
-
     plt.show()
     
     return {
@@ -183,9 +180,7 @@ def analyse_names(names):
         "median": median,
         "Number of names by length:": dict(freq_dict)
     }
-
-        
-          
+                 
 # Anvendelse af funktionerne
 
 def main():
@@ -205,96 +200,6 @@ def main():
     create_letter_wordcloud(letter_count)
 
     analyse_names(names)
-    
-
-# Visualisering     
-
-
-
-"""
-
-
-
-#### work in progress
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-from wordcloud import WordCloud
-import numpy as np
-from PIL import Image
-
-keys = list(letter_count.keys())
-values = list(letter_count.values())
-
-# Frekvensanalyse
-
-# sns.barplot(data = letter_count, x=keys, y = values)
-# plt.show()
-
-# Wordcloud
-wc = WordCloud(background_color="white",width=1000,height=1000).generate_from_frequencies(letter_count)
-plt.figure(figsize=(15,8))
-#plt.imshow(wc)
-#plt.show()
-
-
-# NAVNELÆNGDE ANALYSE
-
-# optælling af antal bogstaver i navne
-
-from collections import defaultdict
-
-name_data_dict = defaultdict(list)
-
-for name in name_data_list:
-    count = len(name)
-    name_data_dict[name].append(count)
-
-        
-# print(name_data_dict)
-
-# frekvensen af navne af en given længde..
-dict(name_data_dict)
-
-freq_dict = defaultdict(int)
-
-for key, val in name_data_dict.items():
-    for count in val:
-        freq_dict[count] += 1
-
-print(freq_dict)
-
-len_key = list(freq_dict.keys())
-len_val = list(freq_dict.values())
-sns.barplot(data = freq_dict, x = len_key, y = len_val)
-#plt.show()
-
-# median navnelængde
-
-alle_values = []
-for key, value in freq_dict.items():
-    alle_values.extend([key] * value)
-
-median = np.median(alle_values)
-print(f"Medianen er = {median}")
-      
-# mean navnelængde
-
-total_count = sum(freq_dict.values())
-
-mean = sum(key * value for key, value in freq_dict.items()) / total_count
-
-print(f"Gennemsnittet er = {mean}")
-"""
-"""
-plt.figure(figsize=(10, 8))
-sns.boxplot(x=len_key,
-            y=len_val,
-            data=freq_dict,
-            showmeans=True)  # notice the change
-plt.ylabel("Antal_personer", size=14)
-plt.xlabel("Antal_bogstaver", size=14)
-plt.show()"""
-
+ 
 if __name__=="__main__":
     main()

@@ -13,10 +13,10 @@ import os
 def csv_file_readnwrite(file_path, dest_path): 
 
     """
-    Funktion som læser data fra en csv fil, og skriver pågældende data til en ønsker fildestination 
+    Funktion som læser data fra en csv fil, og skriver pågældende data til en ønsket fildestination 
 
     file_path: Sti til kildefil
-    dest_oath: Sti hvortil data ønskes skrevet over i en destinationsfil
+    dest_path: Sti hvortil data ønskes skrevet over i en destinationsfil
     
     Returnerer True hvis hvis det lykkedes, False hvis det mislykkedes 
 
@@ -25,7 +25,7 @@ def csv_file_readnwrite(file_path, dest_path):
 # Først tjekkes om kildefilen eksisterer: 
     
     if not os.path.exists(file_path):
-        print(f"Error: Source file '{file_path}' does not exist.")
+        print(f"Error: Source file '{file_path}' does not exist :<")
         return False    
 
 # Kildefil læses..
@@ -33,7 +33,7 @@ def csv_file_readnwrite(file_path, dest_path):
     try:
         with open(file_path, "r") as file:
             content = file.read()
-        print("Csv-file read successfully!")          
+        print("Csv-file has been read successfully!")          
     
     except csv.Error as e: # forkert filtype(ikke csv)
         print(f"Error: {e}")
@@ -51,7 +51,7 @@ def csv_file_readnwrite(file_path, dest_path):
             return True
 
     except FileNotFoundError: # filen kan ikke findes
-        print("Error: file not found.")
+        print("Error: file not found;___;")
         return False
       
     except Exception as e: # andre fejl
@@ -61,9 +61,14 @@ def csv_file_readnwrite(file_path, dest_path):
 
 # Test af funktion:
 
-        # Default paths for testing
-file_path = os.path.join("data", "source_data.csv")
-dest_path = os.path.join("data", "dest_file.csv")
+def main():
+
+    # filstier til afprøvning
+    file_path = os.path.join("data", "source_data.csv")
+    dest_path = os.path.join("data", "dest_file.csv")
 
 
-csv_file_readnwrite(file_path, dest_path)
+    csv_file_readnwrite(file_path, dest_path)
+
+if __name__=="__main__":
+    main()
