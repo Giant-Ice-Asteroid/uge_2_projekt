@@ -1,4 +1,4 @@
-# uge_10_projekt
+# uge_2_projekt
 Projektmappe uge 2 - Amalie
 
 Projektmappen indeholder foruden README:
